@@ -1,0 +1,46 @@
+@startuml
+
+class Cliente {
+    - id: int
+    - nombre: string
+    - correoElectronico: string
+    - telefono: string
+    - direccion: string
+    - carrosInteresados: List<Carro>
+    + buscarCarro(criterios: Busqueda): List<Carro>
+}
+
+class Carro {
+    - id: int
+    - marca: string
+    - modelo: string
+    - año: int
+    - precio: double
+    - estado: EstadoCarro
+    + reservar() : boolean
+}
+
+class Vendedor {
+    - id: int
+    - nombre: string
+    - correoElectronico: string
+    - telefono: string
+    - carrosAsignados: List<Carro>
+    + agregarCarro(carro: Carro)
+    + actualizarCarro(carro: Carro)
+}
+
+enum EstadoCarro {
+    DISPONIBLE
+    RESERVADO
+    VENDIDO
+}
+
+class Busqueda {
+    - criterios: Map<String, String>
+    + agregarCriterio(criterio: String, valor: String)
+    + removerCriterio(criterio: String)
+}
+
+Cliente "1" --> "*" Carro : muestra interés en
+Carro "1" --> "0..1" Vendedor : asignado a

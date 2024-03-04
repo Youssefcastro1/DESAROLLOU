@@ -1,0 +1,31 @@
+@startuml
+
+actor Comprador as comprador
+rectangle ProcesoDeCompra {
+    usecase (Buscar Carro) as buscarCarro
+    usecase (Seleccionar Marca, Modelo) as seleccionarModelo
+    usecase (Seleccionar Color) as seleccionarColor
+    usecase (Seleccionar Opciones) as seleccionarOpciones
+    usecase (Ingresar Datos Personales) as ingresarDatosPersonales
+    usecase (Confirmar Compra) as confirmarCompra
+
+    comprador --> buscarCarro
+    buscarCarro --> seleccionarModelo
+    seleccionarModelo --> seleccionarColor
+    seleccionarColor --> seleccionarOpciones
+    seleccionarOpciones --> ingresarDatosPersonales
+    ingresarDatosPersonales --> confirmarCompra
+}
+
+rectangle Administracion {
+    usecase (Agregar Carro al Inventario) as agregarCarro
+    usecase (Eliminar Carro del Inventario) as eliminarCarro
+    usecase (Actualizar Información del Carro) as actualizarInformacion
+
+    agregarCarro --> eliminarCarro
+    eliminarCarro --> actualizarInformacion
+}
+
+comprador -right-> Administracion : Consultar/Actualizar Inventario
+
+@enduml
