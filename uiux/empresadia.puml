@@ -1,4 +1,4 @@
-@startuml
+@startuml diagrama empresa
 
 class Cliente {
     - id: int
