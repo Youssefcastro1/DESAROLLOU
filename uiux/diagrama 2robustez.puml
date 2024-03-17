@@ -1,0 +1,24 @@
+@startuml
+
+actor Cliente as cliente
+boundary "Pantalla Registro" as pantallaRegistro
+
+cliente -> pantallaRegistro
+
+control "Ingresar nombre" as ingresarNombre
+control "Ingresar apellido" as ingresarApellido
+control "Ingresar cédula" as ingresarCedula
+control "Ingresar correo electrónico" as ingresarCorreo
+control "Ingresar teléfono" as ingresarTelefono
+control "Hacer clic en 'Guardar'" as clicGuardar
+control "Hacer clic en 'Cancelar'" as clicCancelar
+
+pantallaRegistro -> ingresarNombre
+pantallaRegistro -> ingresarApellido
+pantallaRegistro -> ingresarCedula
+pantallaRegistro -> ingresarCorreo
+pantallaRegistro -> ingresarTelefono
+
+clicGuardar -> entidadDatosUsuario : Guardar datos del usuario
+
+@enduml

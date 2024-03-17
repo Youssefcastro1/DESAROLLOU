@@ -1,0 +1,27 @@
+@startuml
+
+actor Cliente as cliente
+boundary "Pantalla Principal" as pantallaPrincipal
+
+cliente -> pantallaPrincipal
+
+control "Hacer clic en 'Carros y Camionetas'" as clicCarrosCamionetas
+control "Seleccionar opción de carros" as seleccionarCarros
+control "Seleccionar opción de marca" as seleccionarMarca
+control "Seleccionar opción de modelo" as seleccionarModelo
+control "Hacer clic en 'Buscar'" as clicBuscar
+control "Mostrar resultados" as mostrarResultados
+
+pantallaPrincipal -> clicCarrosCamionetas
+
+clicCarrosCamionetas -> seleccionarCarros
+seleccionarCarros -> seleccionarMarca
+seleccionarMarca -> seleccionarModelo
+seleccionarModelo -> clicBuscar
+clicBuscar -> mostrarResultados
+
+entity BaseDeDatos as baseDeDatos
+
+mostrarResultados -> baseDeDatos
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+actor Cliente as cliente
+boundary "Pantalla Visualización de Coches" as pantallaVisualizacionCoches
+boundary "Pantalla Búsqueda Específica" as pantallaBusquedaEspecifica
+
+cliente -> pantallaVisualizacionCoches
+
+control "Seleccionar criterio de ordenamiento" as seleccionarOrdenamiento
+control "Hacer clic en 'Buscar'" as clicBuscar
+control "Mostrar resultados" as mostrarResultados
+
+pantallaVisualizacionCoches -> seleccionarOrdenamiento
+seleccionarOrdenamiento -> clicBuscar
+clicBuscar -> mostrarResultados
+
+entity BaseDeDatos as baseDeDatos
+
+mostrarResultados -> baseDeDatos : Obtener coches disponibles
+
+cliente -> pantallaBusquedaEspecifica
+
+control "Ingresar criterios de búsqueda" as ingresarCriterios
+control "Hacer clic en 'Buscar'" as clicBuscarEspecifico
+control "Mostrar resultados específicos" as mostrarResultadosEspecificos
+
+pantallaBusquedaEspecifica -> ingresarCriterios
+ingresarCriterios -> clicBuscarEspecifico
+clicBuscarEspecifico -> mostrarResultadosEspecificos
+
+mostrarResultadosEspecificos -> baseDeDatos : Obtener resultados específicos
+
+@enduml
